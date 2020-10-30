@@ -13,7 +13,7 @@ inline auto myfunc(
     const T& f,
     bool periodic = true)
 {
-    static_assert(xt::has_iterator_interface<T>::value, "Cannot happen.");
+    using value_type = typename T::value_type;
 
     xt::xarray<double> A = xt::zeros<double>(w.shape());
     return A;
@@ -27,8 +27,8 @@ inline auto myfunc(
     const M& fmask,
     bool periodic = true)
 {
-    static_assert(xt::has_iterator_interface<T>::value, "Cannot happen.");
-    static_assert(xt::has_iterator_interface<M>::value, "Cannot happen.");
+    using value_type = typename T::value_type;
+    using mask_type = typename M::value_type;
 
     xt::xarray<double> A = xt::ones<double>(w.shape());
     return A;

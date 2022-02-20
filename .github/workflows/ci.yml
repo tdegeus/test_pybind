@@ -32,8 +32,5 @@ jobs:
         environment-file: environment.yaml
         environment-name: myenv
 
-    - name: Set dummy version
-      run: echo "SETUPTOOLS_SCM_PRETEND_VERSION=0.0" >> $GITHUB_ENV
-
     - name: Run tests
       run: python example.py

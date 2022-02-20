@@ -1,0 +1,40 @@
+channels:
+- conda-forge
+dependencies:
+- autodocsumm
+- cmake
+- cpppath
+- docopt.cpp
+- enstat
+- fmt
+- frictionqpotfem
+- gmatelastoplasticqpot
+- goosefem
+- goosehdf5 >0.14.0
+- goosempl
+- gooseslurm
+- h5py
+- highfive
+- make
+- nested_dict
+- ninja
+- openscienceplot_matplotlib
+- parallel
+- pre-commit
+- python
+- python-cppcolormap
+- python-frictionqpotfem >=0.17.3
+- python-gmatelastoplasticqpot
+- python-goosefem >=1.1.0
+- python-prrng
+- python-qpot
+- qpot
+- setuptools_scm
+- shelephant
+- sphinx_rtd_theme
+- tqdm
+- xdmfwrite_h5py
+- xsimd
+- xtensor
+- xtensor-blas
+- xtensor-python

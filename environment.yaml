@@ -7,5 +7,5 @@ dependencies:
 - python-goosefem
 - pybind11
 - pybind11-abi
-- gxx=10
-- gcc=10
+- sel(linux): gcc=10
+- sel(linux): gxx=10

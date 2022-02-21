@@ -41,8 +41,9 @@ jobs:
       working-directory: build
       run: make
 
-    - name: Test
+    - name: Copy
+      run: cp example.py build/
+
+    - name: Run
       working-directory: build
-      run: |
-        cp ../example.py .
-        python example.py
+      run: python example.py

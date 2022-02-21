@@ -7,5 +7,5 @@ dependencies:
 - python-goosefem
 - pybind11
 - pybind11-abi
-- c-compiler
-- cxx-compiler
+- gxx=10
+- gcc=10

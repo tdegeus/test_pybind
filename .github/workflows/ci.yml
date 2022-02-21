@@ -36,7 +36,7 @@ jobs:
 
     - name: Using gcc-10
       if: runner.os == 'Linux'
-    - run: |
+      run: |
          sudo apt update
          sudo apt install gcc-10 g++-10
 

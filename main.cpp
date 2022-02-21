@@ -1,10 +1,5 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
-
-#define FORCE_IMPORT_ARRAY
-#include <xtensor-python/pyarray.hpp>
-#include <xtensor-python/pytensor.hpp>
-
 #include <GooseFEM/GooseFEM.h>
 
 namespace py = pybind11;
@@ -32,8 +27,7 @@ private:
 
 PYBIND11_MODULE(mymodule, m)
 {
-    xt::import_numpy();
-    m.doc() = "Friction model based on GooseFEM and FrictionQPotFEM";
+    m.doc() = "Foo";
     py::class_<Myclass> cls(m, "Myclass");
     cls.def(py::init<size_t>(), "Myclass", py::arg("n"));
     cls.def("vector", &Myclass::vector, "vector");

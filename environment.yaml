@@ -3,8 +3,7 @@ channels:
 dependencies:
 - cmake
 - goosefem
-- ninja
 - python
 - python-goosefem
-- xtensor
-- xtensor-python
+- pybind11
+- pybind11-abi

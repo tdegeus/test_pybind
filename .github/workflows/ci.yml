@@ -42,5 +42,5 @@ jobs:
     - name: Test
       working-directory: build
       run: |
-        cp ../example.py
+        cp ../example.py .
         python example.py

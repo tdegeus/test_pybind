@@ -34,7 +34,21 @@ jobs:
         environment-file: environment.yaml
         environment-name: myenv
 
+    - name: Using gcc-10
+      if: runner.os == 'Linux'
+    - run: |
+         sudo apt update
+         sudo apt install gcc-10 g++-10
+
     - name: Configure
+      if: runner.os == 'Linux'
+      run: cmake -Bbuild
+      env:
+       CC: gcc-10
+       CXX: g++-10
+
+    - name: Configure
+      if: runner.os != 'Linux'
       run: cmake -Bbuild
 
     - name: Build

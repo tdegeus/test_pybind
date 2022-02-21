@@ -32,5 +32,15 @@ jobs:
         environment-file: environment.yaml
         environment-name: myenv
 
-    - name: Run tests
-      run: python example.py
+    - name: Configure
+      run: cmake -Bbuild
+
+    - name: Build
+      working-directory: build
+      run: make
+
+    - name: Test
+      working-directory: build
+      run: |
+        cp ../example.py
+        python example.py

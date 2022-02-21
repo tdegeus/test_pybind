@@ -1,0 +1,10 @@
+channels:
+- conda-forge
+dependencies:
+- cmake
+- goosefem
+- ninja
+- python
+- python-goosefem
+- xtensor
+- xtensor-python

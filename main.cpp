@@ -20,7 +20,7 @@ std::vector<size_t> myfunc(const T& scale)
 }
 
 
-PYBIND11_MODULE(mymodule, m)
+PYBIND11_MODULE(_mymodule, m)
 {
     m.doc() = "Foo";
     xt::import_numpy();

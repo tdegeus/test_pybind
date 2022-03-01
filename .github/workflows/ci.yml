@@ -34,16 +34,8 @@ jobs:
         environment-file: environment.yaml
         environment-name: myenv
 
-    - name: Configure
-      run: cmake -Bbuild
-
     - name: Build
-      working-directory: build
-      run: make
-
-    - name: Copy
-      run: cp example.py build/
+      run: python -m pip install .
 
     - name: Run
-      working-directory: build
       run: python example.py

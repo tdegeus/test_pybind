@@ -35,11 +35,11 @@ jobs:
         environment-name: myenv
 
     - name: Configure
-      run: cmake -Bbuild
+      run: cmake -Bbuild -G Ninja
 
     - name: Build
       working-directory: build
-      run: make
+      run: cmake --build .
 
     - name: Copy
       run: cp example.py build/

@@ -6,3 +6,4 @@ dependencies:
 - pybind11
 - xtensor
 - xtensor-python
+- ninja

@@ -7,3 +7,4 @@ dependencies:
 - xtensor
 - xtensor-python
 - ninja
+- scikit-build

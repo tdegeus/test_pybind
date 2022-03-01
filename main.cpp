@@ -1,34 +1,25 @@
-#include <pybind11/pybind11.h>
-#include <pybind11/stl.h>
-#include <GooseFEM/GooseFEM.h>
+#include <xtensor/xtensor.hpp>
+#include <xtensor/xsort.hpp>
 
-namespace py = pybind11;
-
-class Myclass
+template <class T>
+std::vector<size_t> myfunc(const T& scale)
 {
-public:
-    Myclass() = default;
+    auto index = xt::unravel_index(xt::argmin(xt::abs(scale))(), scale.shape());
+    size_t e = index[0];
+    size_t q = index[1];
+    return std::vector<size_t>{e, q};
+}
 
-    Myclass(size_t n) {
-        m_mesh = GooseFEM::Mesh::Quad4::Regular(n, n);
-        m_vector = GooseFEM::Vector(m_mesh.conn(), m_mesh.dofs());
-    }
-
-    const GooseFEM::Vector& vector() const
-    {
-        return m_vector;
-    }
-
-private:
-    GooseFEM::Mesh::Quad4::Regular m_mesh;
-    GooseFEM::Vector m_vector;
-};
-
-
-PYBIND11_MODULE(mymodule, m)
+int main()
 {
-    m.doc() = "Foo";
-    py::class_<Myclass> cls(m, "Myclass");
-    cls.def(py::init<size_t>(), "Myclass", py::arg("n"));
-    cls.def("vector", &Myclass::vector, "vector");
+    xt::xtensor<double, 2> A = {
+        {1, 1, 2, 4, 5},
+        {3, 4, 0.5, 6, 7},
+        {1, 1, 2, 4, 5}
+    };
+    auto index = myfunc(A);
+
+    if (index[0] != 1 || index[1] != 2) {
+        throw std::runtime_error("Something went wrong");
+    }
 }

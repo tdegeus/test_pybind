@@ -2,8 +2,5 @@ channels:
 - conda-forge
 dependencies:
 - cmake
-- goosefem
-- python
-- python-goosefem
-- pybind11
-- pybind11-abi
+- ninja
+- xtensor

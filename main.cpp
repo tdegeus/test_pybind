@@ -1,34 +1,28 @@
+#include <vector>
+#include <xtensor/xtensor.hpp>
+#include <xtensor/xsort.hpp>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
-#include <GooseFEM/GooseFEM.h>
+
+#define FORCE_IMPORT_ARRAY
+#include <xtensor-python/pyarray.hpp>
+#include <xtensor-python/pytensor.hpp>
 
 namespace py = pybind11;
 
-class Myclass
+template <class T>
+std::vector<size_t> myfunc(const T& scale)
 {
-public:
-    Myclass() = default;
-
-    Myclass(size_t n) {
-        m_mesh = GooseFEM::Mesh::Quad4::Regular(n, n);
-        m_vector = GooseFEM::Vector(m_mesh.conn(), m_mesh.dofs());
-    }
-
-    const GooseFEM::Vector& vector() const
-    {
-        return m_vector;
-    }
-
-private:
-    GooseFEM::Mesh::Quad4::Regular m_mesh;
-    GooseFEM::Vector m_vector;
-};
+    auto index = xt::unravel_index(xt::argmin(xt::abs(scale))(), scale.shape());
+    size_t e = index[0];
+    size_t q = index[1];
+    return std::vector<size_t>{e, q};
+}
 
 
 PYBIND11_MODULE(mymodule, m)
 {
     m.doc() = "Foo";
-    py::class_<Myclass> cls(m, "Myclass");
-    cls.def(py::init<size_t>(), "Myclass", py::arg("n"));
-    cls.def("vector", &Myclass::vector, "vector");
+    xt::import_numpy();
+    m.def("myfunc", &myfunc<xt::pytensor<double, 2>>, "myfunc");
 }
